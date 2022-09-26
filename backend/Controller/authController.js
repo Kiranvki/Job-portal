@@ -7,19 +7,28 @@ const { createAccToken, createRefToken } = require('../util/token')
 const authController = {
     register: async (req, res) => {
         try {
-            const { name, email, mobile, password } = req.body;
+            const { firstName,lastName,age,gender, email, mobile, password,country,city,district,address,state } = req.body;
             const passHash = await bcrypt.hash(password, 10)
             // res.json("register called")
             const newUser = await Auth({
-                name,
+                firstName,
+                lastName,
+                age,
+                gender,
+                country,
+                city,
+                district,
                 email,
                 mobile,
+                address,
+                state,
                 password: passHash
             })
             // res.json({
             //     data: newUser
             // })
             await newUser.save()
+             res.status(200).json({ msg: "User registered successfully"});
 
             // let subject = "Food Bang - New User Registration";
             // let content = `<div>

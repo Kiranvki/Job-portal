@@ -9,7 +9,7 @@ const Auth = new mongoose.Schema(
             required: true,
             trim: true
         },
-        LastName: {
+        lastName: {
             type: String,
             required: true,
             trim: true
